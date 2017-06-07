@@ -30,21 +30,15 @@ def projectList(root):
 
 class mainView(object):
     """Main view"""
-    def __init__(self, root):
-        self.root = root
-        self.root.config(menu=headerMenu(self.root, self.popup))
-        self.label = Label(self.root, text="Select project types")
+    def __init__(self, frame, app):
+        self.frame = frame
+        self.app = app
+        self.label = Label(self.frame, text="Select project types")
         self.label.pack()
-        self.pl = projectList(self.root)
+        self.pl = projectList(self.frame)
         self.pl['pList'].pack()
-        self.okButton=Button(root, text="Ok", command=self.root.quit)
+        self.okButton=Button(frame, text="Ok", command=self.switchView)
         self.okButton.pack()
-
-    def popup(self):
-        self.w = popupWindow(self.root)
-        self.root.wait_window(self.w.top)
-        self.pl['pList'].insert(self.pl['pLen'], self.w.value)
-        self.pl['pLen'] += 1
-
-    def entryValue(self):
-        return self.w.value
+    def switchView(self, view = 'typeView'):
+        print view, 'in mainView'
+        self.app.switchView(view)
