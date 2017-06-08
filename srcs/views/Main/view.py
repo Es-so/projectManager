@@ -2,7 +2,7 @@ from Tkinter import *
 from tkMessageBox import *
 import sys
 from new import *
-from ..type.view import typeView
+# from ..type.view import typeView
 
 def alert():
     showinfo("alerte", "todo")

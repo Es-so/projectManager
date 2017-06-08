@@ -2,7 +2,7 @@ from Tkinter import *
 from views.Main.view import *
 from popUp.newType import *
 
-def typeView(f):
+def typeView(f, app):
     return f
 
 Views = {
@@ -17,7 +17,7 @@ Views = {
 }
 
 def viewClass(view, frame, app):
-    return ({ 'mainView': mainView(frame, app), 'typeView': typeView(frame) })[view]
+    return ({ 'mainView': mainView(frame, app), 'typeView': typeView(frame, app) })[view]
 
 def topMenu(root, popup):
     menubar = Menu(root)
