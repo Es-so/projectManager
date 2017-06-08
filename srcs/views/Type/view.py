@@ -29,7 +29,7 @@ def projectList(root):
     pList.insert(5, "Web client/server")
     return ({ "pList": pList, "pLen": 6 })
 
-class mainView(object):
+class typeView(object):
     """Main view"""
     def __init__(self, frame, app):
         self.frame = frame
@@ -41,5 +41,5 @@ class mainView(object):
         self.okButton=Button(frame, text="Ok", command=self.switchView)
         self.okButton.pack()
     def switchView(self, view = 'typeView'):
-        print view, 'in mainView'
+        print view, 'in TypeView'
         self.app.switchView(view)

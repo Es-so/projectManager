@@ -2,6 +2,9 @@ from Tkinter import *
 from views.Main.view import *
 from popUp.newType import *
 
+def typeView(f):
+    return f
+
 Views = {
     'mainView': {
         'title': 'Main menu',
@@ -12,6 +15,9 @@ Views = {
         'frame': {}
     }
 }
+
+def viewClass(view, frame, app):
+    return ({ 'mainView': mainView(frame, app), 'typeView': typeView(frame) })[view]
 
 def topMenu(root, popup):
     menubar = Menu(root)
@@ -27,20 +33,22 @@ class App(object):
         self.root = root
         self.root.config(menu=topMenu(root, self.popup))
         self.frames = Views
-        self.frames = { view : {'frame' : Frame(root) , 'title' : Views[view]['title']} for view in Views }
-        print (self.frames, Views)
+        self.frames = { view: {'frame': Frame(root), 'title': Views[view]['title']} for view in Views }
+        for k, v in self.frames.iteritems():
+            v['view'] = viewClass(k, v['frame'], self)
+            print v
         self.currentView = self.frames['mainView']['frame']
         self.currentView.grid(row=0)
-        mainView(self.currentView, self)
+        # mainView(self.currentView, self)
         Button(self.root, text='main', command=self.switchView).grid(row=1)
 
-    def switchView(self, view = 'mainView'):
+    def switchView(self, view = 'mainView', action = {}):
         print view, 'in app'
         self.currentView.grid_forget()
         self.currentView = self.frames[view]['frame']
         self.currentView.grid(row=0)
 
-    def popup(self):
+    def popup(self, action = {}):
         self.w = PopupWindow(self.root)
         self.root.wait_window(self.w.top)
         self.switchView('mainView')
