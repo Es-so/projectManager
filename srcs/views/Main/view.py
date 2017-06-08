@@ -2,6 +2,7 @@ from Tkinter import *
 from tkMessageBox import *
 import sys
 from new import *
+from ..type.view import typeView
 
 def alert():
     showinfo("alerte", "todo")
@@ -43,3 +44,5 @@ class mainView(object):
     def switchView(self, view = 'typeView'):
         print view, 'in mainView'
         self.app.switchView(view)
+    def typeSelcted(self, view):
+        return 1
