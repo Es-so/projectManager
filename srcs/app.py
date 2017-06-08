@@ -44,8 +44,8 @@ class App(object):
         self.w = PopupWindow(self.root)
         self.root.wait_window(self.w.top)
         self.switchView('mainView')
-        self.pl['pList'].insert(self.pl['pLen'], self.w.value)
-        self.pl['pLen'] += 1
+        # self.pl['pList'].insert(self.pl['pLen'], self.w.value)
+        # self.pl['pLen'] += 1
 
     def entryValue(self):
         return self.w.value
